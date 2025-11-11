@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trenchers Veteran Fund — mem-token by veterans</title>
+  <meta name="description" content="Community-run mem-token built by veterans for veterans. No VCs. No suits. Just frontline believers backing a movement.">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        :root {
+            --camo-primary: #3B4B2F;
+            --camo-mid: #6B7B5A;
+            --camo-light: #9AA58A;
+            --accent-gold: #C49A51;
+            --deep-contrast: #0F1A10;
+            --text-light: #E8E8E8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: var(--deep-contrast);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        /* Canvas Texture Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255,255,255,0.02) 2px,
+                    rgba(255,255,255,0.02) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255,255,255,0.02) 2px,
+                    rgba(255,255,255,0.02) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(15, 26, 16, 0.95);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--accent-gold);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--camo-primary) 0%, var(--deep-contrast) 100%);
+            padding: 4rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(107, 123, 90, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(59, 75, 47, 0.3) 0%, transparent 50%);
+            animation: smokeFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes smokeFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-badge {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-family: 'Courier New', monospace;
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            line-height: 1.2;
+        }
+
+        .hero-subheadline {
+            font-size: 1.5rem;
+            color: var(--camo-light);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--deep-contrast);
+            box-shadow: 
+                inset 0 -3px 0 rgba(0,0,0,0.3),
+                0 4px 8px rgba(0,0,0,0.4);
+        }
+
+        .btn-primary:hover {
+            background: #D4AA61;
+            transform: translateY(-2px);
+            box-shadow: 
+                inset 0 -3px 0 rgba(0,0,0,0.3),
+                0 6px 12px rgba(0,0,0,0.5);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px);
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.4),
+                0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(196, 154, 81, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Courier New', monospace;
+            font-size: 3rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--accent-gold);
+        }
+
+        .section-header p {
+            color: var(--camo-light);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* About Section */
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: rgba(59, 75, 47, 0.4);
+            border: 2px solid var(--camo-mid);
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .card:hover::before {
+            opacity: 0.3;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .card h3 {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card p {
+            color: var(--camo-light);
+            line-height: 1.8;
+        }
+
+        /* Tokenomics Section */
+        .tokenomics-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .tokenomics-chart {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .tokenomics-details {
+            background: rgba(59, 75, 47, 0.3);
+            border: 2px solid var(--camo-mid);
+            padding: 2.5rem;
+        }
+
+        .tokenomics-details h3 {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .tokenomics-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--camo-mid);
+        }
+
+        .tokenomics-item:last-child {
+            border-bottom: none;
+        }
+
+        .tokenomics-label {
+            font-weight: bold;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tokenomics-value {
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Roadmap Section */
+        .roadmap-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .roadmap-item {
+            background: linear-gradient(135deg, var(--camo-primary), var(--camo-mid));
+            border: 2px solid var(--accent-gold);
+            padding: 2rem;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+        }
+
+        .roadmap-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--accent-gold);
+            color: var(--deep-contrast);
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .roadmap-item h3 {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .roadmap-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .roadmap-item li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .roadmap-item li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* How to Buy Section */
+        .how-to-buy-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: rgba(59, 75, 47, 0.4);
+            border-left: 4px solid var(--accent-gold);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--accent-gold);
+            color: var(--deep-contrast);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .step h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .step p {
+            color: var(--camo-light);
+            line-height: 1.8;
+        }
+
+        .security-note {
+            background: rgba(196, 154, 81, 0.1);
+            border: 2px solid var(--accent-gold);
+            padding: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .security-note strong {
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: rgba(59, 75, 47, 0.4);
+            border: 2px solid var(--camo-mid);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .team-member:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        .team-silhouette {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            background: var(--camo-mid);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--accent-gold);
+        }
+
+        .team-rank {
+            background: var(--accent-gold);
+            color: var(--deep-contrast);
+            padding: 0.3rem 1rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .team-member h3 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-member p {
+            color: var(--camo-light);
+            line-height: 1.8;
+        }
+
+        /* Community Section */
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-box {
+            background: rgba(59, 75, 47, 0.4);
+            border: 2px solid var(--accent-gold);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Courier New', monospace;
+            font-size: 3rem;
+            color: var(--accent-gold);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--camo-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .social-btn {
+            background: rgba(59, 75, 47, 0.6);
+            border: 2px solid var(--accent-gold);
+            padding: 1rem 2rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .social-btn:hover {
+            background: var(--accent-gold);
+            color: var(--deep-contrast);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-contrast);
+            border-top: 2px solid var(--accent-gold);
+            padding: 3rem 2rem 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-stamp {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--deep-contrast);
+            padding: 0.5rem 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            transform: rotate(-2deg);
+            border: 3px solid var(--deep-contrast);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        }
+
+        .legal-disclaimer {
+            background: rgba(196, 154, 81, 0.1);
+            border: 1px solid var(--camo-mid);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 0.9rem;
+            color: var(--camo-light);
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: var(--camo-mid);
+            font-size: 0.85rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                padding-top: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .hero-subheadline {
+                font-size: 1.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .tokenomics-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Sticky CTA for Mobile */
+        .sticky-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 26, 16, 0.98);
+            padding: 1rem;
+            border-top: 2px solid var(--accent-gold);
+            z-index: 99;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-cta {
+                display: block;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="content-wrapper"><!-- Navigation -->
+   <nav>
+    <div class="nav-container">
+     <div class="logo">
+      ⚔ TRENCHERS
+     </div><button class="mobile-menu-btn" onclick="toggleMenu()">MENU</button>
+     <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#tokenomics">Tokenomics</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#how-to-buy">How to Buy</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="#legal">Legal</a></li>
+     </ul>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="hero" id="home">
+    <div class="hero-content">
+     <div class="hero-badge">
+      <svg viewbox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="55" fill="#C49A51" stroke="#0F1A10" stroke-width="3" /> <circle cx="60" cy="60" r="45" fill="#3B4B2F" stroke="#C49A51" stroke-width="2" /> <path d="M60 25 L70 50 L95 50 L75 65 L85 90 L60 75 L35 90 L45 65 L25 50 L50 50 Z" fill="#C49A51" /> <text x="60" y="68" font-family="Courier New" font-size="16" font-weight="bold" fill="#0F1A10" text-anchor="middle">
+        $TRENCH
+       </text>
+      </svg>
+     </div>
+     <h1 id="heroHeadline">TRENCHERS VETERAN FUND</h1>
+     <p class="hero-subheadline" id="heroSubheadline">Built by trenchers. For trenchers. A mem-token for the frontline.</p>
+     <div class="hero-cta"><a href="#how-to-buy" class="btn btn-primary">BUY $TRENCH</a> <a href="#about" class="btn btn-secondary">LEARN MORE</a>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about">
+    <div class="section-header">
+     <h2>MISSION BRIEF</h2>
+     <p id="aboutParagraph">No suits. No VCs. Just veterans and frontline workers backing a mem-token movement. Built by the community, for the community.</p>
+    </div>
+    <div class="about-cards">
+     <div class="card">
+      <div class="card-icon">
+       <svg viewbox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="35" fill="none" stroke="#C49A51" stroke-width="3" /> <circle cx="40" cy="30" r="12" fill="#C49A51" /> <circle cx="25" cy="50" r="8" fill="#6B7B5A" /> <circle cx="55" cy="50" r="8" fill="#6B7B5A" /> <circle cx="40" cy="60" r="8" fill="#6B7B5A" />
+       </svg>
+      </div>
+      <h3>COMMUNITY-RUN</h3>
+      <p>No central authority. Decisions made by holders. Power to the trenches.</p>
+     </div>
+     <div class="card">
+      <div class="card-icon">
+       <svg viewbox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="15" width="50" height="50" fill="none" stroke="#C49A51" stroke-width="3" /> <line x1="25" y1="25" x2="55" y2="55" stroke="#C49A51" stroke-width="4" /> <line x1="55" y1="25" x2="25" y2="55" stroke="#C49A51" stroke-width="4" />
+       </svg>
+      </div>
+      <h3>NO VC FUNDING</h3>
+      <p>Zero venture capital. Zero corporate control. Pure grassroots movement.</p>
+     </div>
+     <div class="card">
+      <div class="card-icon">
+       <svg viewbox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><polygon points="40,10 50,35 75,35 55,50 65,75 40,60 15,75 25,50 5,35 30,35" fill="#C49A51" /> <circle cx="40" cy="45" r="8" fill="#0F1A10" />
+       </svg>
+      </div>
+      <h3>VETERAN-LED</h3>
+      <p>Built by those who served. Backed by those who believe. For the frontline.</p>
+     </div>
+    </div>
+   </section><!-- Tokenomics Section -->
+   <section id="tokenomics">
+    <div class="section-header">
+     <h2>TOKENOMICS</h2>
+     <p>Transparent. Fair. Built for the long haul.</p>
+    </div>
+    <div class="tokenomics-content">
+     <div class="tokenomics-chart">
+      <svg viewbox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><circle cx="200" cy="200" r="150" fill="none" stroke="#6B7B5A" stroke-width="2" /> <path d="M 200 50 A 150 150 0 0 1 350 200 L 200 200 Z" fill="#C49A51" opacity="0.8" /> <path d="M 350 200 A 150 150 0 0 1 200 350 L 200 200 Z" fill="#6B7B5A" opacity="0.8" /> <path d="M 200 350 A 150 150 0 0 1 50 200 L 200 200 Z" fill="#9AA58A" opacity="0.8" /> <path d="M 50 200 A 150 150 0 0 1 200 50 L 200 200 Z" fill="#3B4B2F" opacity="0.8" /> <circle cx="200" cy="200" r="80" fill="#0F1A10" /> <text x="200" y="210" font-family="Courier New" font-size="24" font-weight="bold" fill="#C49A51" text-anchor="middle">
+        $TRENCH
+       </text>
+      </svg>
+     </div>
+     <div class="tokenomics-details">
+      <h3>SUPPLY BREAKDOWN</h3>
+      <div class="tokenomics-item"><span class="tokenomics-label">Total Supply</span> <span class="tokenomics-value" id="totalSupply">1,000,000,000</span>
+      </div>
+      <div class="tokenomics-item"><span class="tokenomics-label">Burn Mechanism</span> <span class="tokenomics-value" id="burnPercentage">5%</span>
+      </div>
+      <div class="tokenomics-item"><span class="tokenomics-label">Redistribution</span> <span class="tokenomics-value" id="redistributionPercentage">3%</span>
+      </div>
+      <div class="tokenomics-item"><span class="tokenomics-label">Liquidity Pool</span> <span class="tokenomics-value">40%</span>
+      </div>
+      <div class="tokenomics-item"><span class="tokenomics-label">Community Treasury</span> <span class="tokenomics-value">30%</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- Roadmap Section -->
+   <section id="roadmap">
+    <div class="section-header">
+     <h2>BATTLE PLAN</h2>
+     <p>Our mission roadmap. Objectives clear. Execution precise.</p>
+    </div>
+    <div class="roadmap-timeline">
+     <div class="roadmap-item">
+      <div class="roadmap-badge">
+       PHASE 1
+      </div>
+      <h3>LAUNCH</h3>
+      <ul>
+       <li>Token deployment</li>
+       <li>Community formation</li>
+       <li>Initial liquidity</li>
+       <li>Social channels live</li>
+      </ul>
+     </div>
+     <div class="roadmap-item">
+      <div class="roadmap-badge">
+       PHASE 2
+      </div>
+      <h3>COMMUNITY GRANTS</h3>
+      <ul>
+       <li>Grant program launch</li>
+       <li>Veteran support initiatives</li>
+       <li>Community voting system</li>
+       <li>Partnership outreach</li>
+      </ul>
+     </div>
+     <div class="roadmap-item">
+      <div class="roadmap-badge">
+       PHASE 3
+      </div>
+      <h3>CHARITY DROPS</h3>
+      <ul>
+       <li>Veteran charity partnerships</li>
+       <li>Donation mechanisms</li>
+       <li>Transparency reports</li>
+       <li>Impact tracking</li>
+      </ul>
+     </div>
+     <div class="roadmap-item">
+      <div class="roadmap-badge">
+       PHASE 4
+      </div>
+      <h3>LISTING TARGETS</h3>
+      <ul>
+       <li>Major DEX listings</li>
+       <li>CEX applications</li>
+       <li>Expanded liquidity</li>
+       <li>Global reach</li>
+      </ul>
+     </div>
+    </div>
+   </section><!-- How to Buy Section -->
+   <section id="how-to-buy">
+    <div class="section-header">
+     <h2>HOW TO BUY</h2>
+     <p>Four steps to join the trenches. Simple. Secure. Straightforward.</p>
+    </div>
+    <div class="how-to-buy-steps">
+     <div class="step">
+      <div class="step-number">
+       1
+      </div>
+      <h3>CONNECT WALLET</h3>
+      <p>Use MetaMask, Trust Wallet, or any Web3 wallet. Make sure you're on the correct network.</p>
+     </div>
+     <div class="step">
+      <div class="step-number">
+       2
+      </div>
+      <h3>SWAP ON DEX</h3>
+      <p>Head to Uniswap or PancakeSwap. Enter $TRENCH contract address. Set slippage appropriately.</p>
+     </div>
+     <div class="step">
+      <div class="step-number">
+       3
+      </div>
+      <h3>CONFIRM TRANSACTION</h3>
+      <p>Review swap details carefully. Confirm transaction in your wallet. Wait for blockchain confirmation.</p>
+     </div>
+     <div class="step">
+      <div class="step-number">
+       4
+      </div>
+      <h3>HOLD &amp; PARTICIPATE</h3>
+      <p>Welcome to the trenches. Hold your tokens. Join community votes. Support the mission.</p>
+     </div>
+    </div>
+    <div class="security-note"><strong>⚠ SECURITY ALERT:</strong> Always verify contract address. This is a mem-token with high risk. Do your own research. Never invest more than you can afford to lose.
+    </div>
+   </section><!-- Team Section -->
+   <section id="team">
+    <div class="section-header">
+     <h2>COMMAND STRUCTURE</h2>
+     <p>Anonymous operators. Veteran leadership. Community first.</p>
+    </div>
+    <div class="team-grid">
+     <div class="team-member">
+      <div class="team-silhouette">
+       <svg viewbox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="30" r="15" fill="#0F1A10" /> <path d="M 20 60 Q 40 50 60 60 L 60 80 L 20 80 Z" fill="#0F1A10" />
+       </svg>
+      </div>
+      <div class="team-rank">
+       COMMANDER
+      </div>
+      <h3>OpSec_Alpha</h3>
+      <p>15 years military service. Crypto veteran since 2017. Leading the charge for community-first tokenomics.</p>
+     </div>
+     <div class="team-member">
+      <div class="team-silhouette">
+       <svg viewbox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="30" r="15" fill="#0F1A10" /> <path d="M 20 60 Q 40 50 60 60 L 60 80 L 20 80 Z" fill="#0F1A10" />
+       </svg>
+      </div>
+      <div class="team-rank">
+       SERGEANT
+      </div>
+      <h3>TrenchDev</h3>
+      <p>Smart contract specialist. Former combat engineer. Building secure, transparent systems for the community.</p>
+     </div>
+     <div class="team-member">
+      <div class="team-silhouette">
+       <svg viewbox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="30" r="15" fill="#0F1A10" /> <path d="M 20 60 Q 40 50 60 60 L 60 80 L 20 80 Z" fill="#0F1A10" />
+       </svg>
+      </div>
+      <div class="team-rank">
+       OPERATOR
+      </div>
+      <h3>Frontline_Comms</h3>
+      <p>Community manager. Veteran advocate. Keeping the trenches connected and informed 24/7.</p>
+     </div>
+    </div>
+   </section><!-- Community Section -->
+   <section id="community">
+    <div class="section-header">
+     <h2>JOIN THE TRENCHES</h2>
+     <p>Buy a token. Back a veteran movement.</p>
+    </div>
+    <div class="community-stats">
+     <div class="stat-box"><span class="stat-number">5,000+</span> <span class="stat-label">Holders</span>
+     </div>
+     <div class="stat-box"><span class="stat-number">12K+</span> <span class="stat-label">Discord Members</span>
+     </div>
+     <div class="stat-box"><span class="stat-number">25K+</span> <span class="stat-label">Twitter Followers</span>
+     </div>
+    </div>
+    <div class="social-links"><a href="https://twitter.com/trenchersfund" target="_blank" rel="noopener noreferrer" class="social-btn">Twitter/X</a> <a href="https://discord.gg/trenchers" target="_blank" rel="noopener noreferrer" class="social-btn">Discord</a> <a href="https://t.me/trenchersfund" target="_blank" rel="noopener noreferrer" class="social-btn">Telegram</a>
+    </div>
+    <div style="text-align: center; margin-top: 3rem;"><a href="https://discord.gg/trenchers" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 1.3rem; padding: 1.5rem 3rem;">JOIN THE TRENCHES</a>
+    </div>
+   </section><!-- Footer -->
+   <footer id="legal">
+    <div class="footer-content">
+     <div class="footer-stamp">
+      COMMUNITY RUN
+     </div>
+     <div class="legal-disclaimer" id="legalDisclaimer">
+      Trenchers Veteran Fund is a community mem-token. This site is for entertainment and community purposes only. This is not financial advice. Crypto investments are high risk; do your own research.
+     </div>
+     <div class="footer-links"><a href="#privacy">Privacy Policy</a> <a href="#terms">Terms of Service</a> <a href="#contact">Contact</a>
+     </div>
+     <p class="copyright">© 2024 Trenchers Veteran Fund. All rights reserved. No financial advisors, just frontline believers.</p>
+    </div>
+   </footer><!-- Sticky CTA for Mobile -->
+   <div class="sticky-cta"><a href="#how-to-buy" class="btn btn-primary" style="width: 100%;">BUY $TRENCH NOW</a>
+   </div>
+  </div>
+  <script>
+        const defaultConfig = {
+            hero_headline: "TRENCHERS VETERAN FUND",
+            hero_subheadline: "Built by trenchers. For trenchers. A mem-token for the frontline.",
+            about_paragraph: "No suits. No VCs. Just veterans and frontline workers backing a mem-token movement. Built by the community, for the community.",
+            total_supply: "1,000,000,000",
+            burn_percentage: "5%",
+            redistribution_percentage: "3%",
+            legal_disclaimer: "Trenchers Veteran Fund is a community mem-token. This site is for entertainment and community purposes only. This is not financial advice. Crypto investments are high risk; do your own research.",
+            background_color: "#0F1A10",
+            primary_color: "#3B4B2F",
+            accent_color: "#C49A51",
+            text_color: "#E8E8E8",
+            secondary_color: "#6B7B5A",
+            font_family: "Arial",
+            font_size: 16
+        };
+
+        async function onConfigChange(config) {
+            const heroHeadline = document.getElementById('heroHeadline');
+            const heroSubheadline = document.getElementById('heroSubheadline');
+            const aboutParagraph = document.getElementById('aboutParagraph');
+            const totalSupply = document.getElementById('totalSupply');
+            const burnPercentage = document.getElementById('burnPercentage');
+            const redistributionPercentage = document.getElementById('redistributionPercentage');
+            const legalDisclaimer = document.getElementById('legalDisclaimer');
+
+            if (heroHeadline) heroHeadline.textContent = config.hero_headline || defaultConfig.hero_headline;
+            if (heroSubheadline) heroSubheadline.textContent = config.hero_subheadline || defaultConfig.hero_subheadline;
+            if (aboutParagraph) aboutParagraph.textContent = config.about_paragraph || defaultConfig.about_paragraph;
+            if (totalSupply) totalSupply.textContent = config.total_supply || defaultConfig.total_supply;
+            if (burnPercentage) burnPercentage.textContent = config.burn_percentage || defaultConfig.burn_percentage;
+            if (redistributionPercentage) redistributionPercentage.textContent = config.redistribution_percentage || defaultConfig.redistribution_percentage;
+            if (legalDisclaimer) legalDisclaimer.textContent = config.legal_disclaimer || defaultConfig.legal_disclaimer;
+
+            // Apply colors
+            const bgColor = config.background_color || defaultConfig.background_color;
+            const primaryColor = config.primary_color || defaultConfig.primary_color;
+            const accentColor = config.accent_color || defaultConfig.accent_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+
+            document.body.style.background = bgColor;
+            document.body.style.color = textColor;
+            document.documentElement.style.setProperty('--deep-contrast', bgColor);
+            document.documentElement.style.setProperty('--camo-primary', primaryColor);
+            document.documentElement.style.setProperty('--accent-gold', accentColor);
+            document.documentElement.style.setProperty('--text-light', textColor);
+            document.documentElement.style.setProperty('--camo-mid', secondaryColor);
+
+            // Apply font
+            const customFont = config.font_family || defaultConfig.font_family;
+            const baseFontStack = 'Arial, Helvetica, sans-serif';
+            document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+
+            // Apply font size
+            const baseSize = config.font_size || defaultConfig.font_size;
+            document.body.style.fontSize = `${baseSize}px`;
+            
+            const h1Elements = document.querySelectorAll('h1');
+            h1Elements.forEach(el => el.style.fontSize = `${baseSize * 2.5}px`);
+            
+            const h2Elements = document.querySelectorAll('h2');
+            h2Elements.forEach(el => el.style.fontSize = `${baseSize * 1.875}px`);
+            
+            const h3Elements = document.querySelectorAll('h3');
+            h3Elements.forEach(el => el.style.fontSize = `${baseSize * 1.125}px`);
+        }
+
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    const navLinks = document.getElementById('navLinks');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        {
+                            get: () => config.background_color || defaultConfig.background_color,
+                            set: (value) => {
+                                config.background_color = value;
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.primary_color || defaultConfig.primary_color,
+                            set: (value) => {
+                                config.primary_color = value;
+                                window.elementSdk.setConfig({ primary_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.accent_color || defaultConfig.accent_color,
+                            set: (value) => {
+                                config.accent_color = value;
+                                window.elementSdk.setConfig({ accent_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.text_color || defaultConfig.text_color,
+                            set: (value) => {
+                                config.text_color = value;
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.secondary_color || defaultConfig.secondary_color,
+                            set: (value) => {
+                                config.secondary_color = value;
+                                window.elementSdk.setConfig({ secondary_color: value });
+                            }
+                        }
+                    ],
+                    borderables: [],
+                    fontEditable: {
+                        get: () => config.font_family || defaultConfig.font_family,
+                        set: (value) => {
+                            config.font_family = value;
+                            window.elementSdk.setConfig({ font_family: value });
+                        }
+                    },
+                    fontSizeable: {
+                        get: () => config.font_size || defaultConfig.font_size,
+                        set: (value) => {
+                            config.font_size = value;
+                            window.elementSdk.setConfig({ font_size: value });
+                        }
+                    }
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["hero_headline", config.hero_headline || defaultConfig.hero_headline],
+                    ["hero_subheadline", config.hero_subheadline || defaultConfig.hero_subheadline],
+                    ["about_paragraph", config.about_paragraph || defaultConfig.about_paragraph],
+                    ["total_supply", config.total_supply || defaultConfig.total_supply],
+                    ["burn_percentage", config.burn_percentage || defaultConfig.burn_percentage],
+                    ["redistribution_percentage", config.redistribution_percentage || defaultConfig.redistribution_percentage],
+                    ["legal_disclaimer", config.legal_disclaimer || defaultConfig.legal_disclaimer]
+                ])
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99ce9695e7c7e24d',t:'MTc2Mjg3MjQ4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
